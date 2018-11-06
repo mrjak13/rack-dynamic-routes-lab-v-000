@@ -10,7 +10,7 @@ class Application
       resp.write "#{@@items.detect{|item| item.name == item_name}.price}"
     else
       resp.write "Item not found"
-      resp.status 401
+      resp.status 400
     end
   else
     resp.write "Path not found"
