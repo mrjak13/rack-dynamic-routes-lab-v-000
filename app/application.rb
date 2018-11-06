@@ -6,11 +6,16 @@ class Aplication
 
   if req.path.match(/items/)
     item_name = req.path.split("/items/").last
-    resp.write "#{@@items.detect{|item| item.name == item_name}.price}"
+    if @@items.detect{|item| item.name == item_name}
+      resp.write "#{@@items.detect{|item| item.name == item_name}.price}"
+    else
+      resp.write "Item not found"
+      resp.status 401
+    end
   else
-
-
+    resp.write "Path not found"
+    resp.statud 404
+  end
   resp.finish
   end
 end
-  
